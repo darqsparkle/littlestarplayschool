@@ -121,7 +121,8 @@ const Home = () => {
 
   const stats = [
     { value: 250, title: 'Happy Students', suffix: '+' },
-    { value: 20, title: 'Years Experience' },
+    { value: 20, title: 'Years Experience',suffix:'+' },
+    { value: 1, title: 'School in Nanganallur',suffix:"st" },
     { value: 98, title: 'Parent Satisfaction', suffix: '%' }
   ];
 
