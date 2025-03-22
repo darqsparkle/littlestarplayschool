@@ -47,22 +47,22 @@ const Contact = () => {
     {
       icon: <MapPin className="h-6 w-6 text-blue-500" />,
       title: 'Visit Us',
-      details: ['123 Learning Street', 'Education City, ST 12345']
+      details: ['Jain Staff Colony Rd, MMTC Colony, Nanganallur, Chennai, Tamil Nadu 600061']
     },
     {
       icon: <Phone className="h-6 w-6 text-green-500" />,
       title: 'Call Us',
-      details: ['(555) 123-4567', '(555) 987-6543']
+      details: ['+91-94447 99338']
     },
     {
       icon: <Mail className="h-6 w-6 text-red-500" />,
       title: 'Email Us',
-      details: ['info@playlearn.com', 'admissions@playlearn.com']
+      details: [ 'admissions@littlestar.com']
     },
     {
       icon: <Clock className="h-6 w-6 text-purple-500" />,
       title: 'Hours',
-      details: ['Monday - Friday: 7 AM - 6 PM', 'Weekend: Closed']
+      details: ['Monday - Friday: 8 AM - 6 PM', 'Weekend: Closed']
     }
   ];
 
@@ -136,7 +136,7 @@ const Contact = () => {
               className="h-[500px] bg-white rounded-xl shadow-lg overflow-hidden"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30596552044!2d-74.25987368715491!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1647043435459!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d307.76699294900965!2d80.18501682836444!3d12.970563554781197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525e0a29465665%3A0x49e7f694fc6ec831!2sLittle%20Star%20Play%20School!5e0!3m2!1sen!2sin!4v1742628713199!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

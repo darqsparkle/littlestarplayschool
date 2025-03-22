@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -26,20 +28,29 @@ const MouseTrail = () => {
 
   return (
     <motion.div
-      className="fixed w-6 h-6 rounded-full bg-blue-400/20 pointer-events-none z-50"
+      className="fixed pointer-events-none z-50"
       animate={{
-        x: mousePosition.x - 12,
-        y: mousePosition.y - 12,
+        x: mousePosition.x - 15,
+        y: mousePosition.y - 15,
         scale: 1,
       }}
       transition={{
         type: "spring",
-        stiffness: 500,
-        damping: 30,
-        mass: 0.1,
+        stiffness: 400,
+        damping: 20,
       }}
-    />
+    >
+      {/* Star SVG */}
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" className="opacity-70">
+        <polygon 
+          points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"
+          fill="yellow"
+          stroke="gold"
+          strokeWidth="1"
+        />
+      </svg>
+    </motion.div>
   );
 };
 
-export default MouseTrail
+export default MouseTrail;

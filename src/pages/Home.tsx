@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { Heart, Brain, Users, Star, Clock, Calendar, Award, Shield, BookOpen, Palette, Music, Gamepad } from 'lucide-react';
+import { Heart, Brain, Users, Star, Clock, Calendar, Award, Shield, BookOpen, Palette, Music, Gamepad, Fan, AirVentIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import AnimatedCounter from '../components/AnimatedCounter';
 import MouseTrail from '../components/MouseTrail';
+import mobiletabvideo from '../assets/horizontal.mp4';
+import desktopvideo from '../assets/vertical.mp4';
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -13,6 +15,36 @@ const Home = () => {
     damping: 30,
     restDelta: 0.001
   });
+  
+  // State to track screen size and video source
+  const [isDesktop, setIsDesktop] = useState(false);
+  
+  // Function to check screen size and set appropriate state
+  const checkScreenSize = () => {
+    const width = window.innerWidth;
+    console.log('Current window width:', width); // Debug log
+    setIsDesktop(width >= 1024);
+  };
+  
+  // Initialize screen check and add event listener
+  useEffect(() => {
+    // Initial check
+    checkScreenSize();
+    
+    // Add event listener for resize
+    window.addEventListener('resize', checkScreenSize);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
+
+  // Debug log to verify state changes
+  useEffect(() => {
+    console.log('isDesktop state:', isDesktop);
+    console.log('Video source:', isDesktop ? 'desktop video' : 'mobile video');
+  }, [isDesktop]);
 
   const benefits = [
     {
@@ -76,9 +108,9 @@ const Home = () => {
       description: 'Continuous learning with special summer activities'
     },
     {
-      icon: <Award className="h-6 w-6 text-yellow-500" />,
-      title: 'Licensed Teachers',
-      description: 'Highly qualified and experienced educators'
+      icon: <AirVentIcon className="h-6 w-6 text-yellow-500" />,
+      title: 'Air conditioned Class Rooms ',
+      description: 'Full A/C class rooms for your children'
     },
     {
       icon: <Shield className="h-6 w-6 text-red-500" />,
@@ -89,10 +121,16 @@ const Home = () => {
 
   const stats = [
     { value: 250, title: 'Happy Students', suffix: '+' },
-    { value: 15, title: 'Expert Teachers' },
-    { value: 12, title: 'Years Experience' },
+    { value: 20, title: 'Years Experience' },
     { value: 98, title: 'Parent Satisfaction', suffix: '%' }
   ];
+
+  // Force reload the video when screen size changes
+  const [key, setKey] = useState(0);
+  useEffect(() => {
+    // Update the key to force video reload
+    setKey(prevKey => prevKey + 1);
+  }, [isDesktop]);
 
   return (
     <div className="pt-20">
@@ -104,7 +142,9 @@ const Home = () => {
 
       {/* Hero Section */}
       <div className="relative h-[90vh] overflow-hidden">
+        {/* Using key to force remount of video element when source changes */}
         <video
+          key={key}
           autoPlay
           muted
           loop
@@ -112,7 +152,7 @@ const Home = () => {
           className="absolute top-0 left-0 w-full h-full object-cover"
         >
           <source
-            src="https://player.vimeo.com/external/517090081.hd.mp4?s=46e55913049e949d307c869bb6f0a146da6df37e&profile_id=175"
+            src={isDesktop ? desktopvideo : mobiletabvideo}
             type="video/mp4"
           />
           Your browser does not support the video tag.

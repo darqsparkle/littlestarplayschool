@@ -22,7 +22,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <GraduationCap className="h-8 w-8 text-blue-500" />
-              <span className="text-2xl font-bold text-blue-500">PlayLearn</span>
+              <span className="text-2xl font-bold text-blue-500">Little Star Play School</span>
             </Link>
           </div>
 

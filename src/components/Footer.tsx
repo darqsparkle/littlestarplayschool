@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">PlayLearn</h3>
+            <h3 className="text-2xl font-bold mb-4">Little Star PlaySchool</h3>
             <p className="text-blue-200">
               Nurturing young minds and creating tomorrow's leaders through play-based learning.
             </p>
@@ -30,11 +30,11 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <MapPin className="h-5 w-5" />
-                <span className="text-blue-200">123 Learning Street, Education City</span>
+                <span className="text-blue-200">Jain Staff Colony Rd, MMTC Colony, Nanganallur</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-5 w-5" />
-                <span className="text-blue-200">(555) 123-4567</span>
+                <span className="text-blue-200">+91 94447 99338</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-5 w-5" />
@@ -61,7 +61,7 @@ const Footer = () => {
         
         <div className="border-t border-blue-800 mt-8 pt-8 text-center">
           <p className="text-blue-200">
-            © {new Date().getFullYear()} PlayLearn. All rights reserved.
+            © {new Date().getFullYear()} Ryuworks All rights reserved!
           </p>
         </div>
       </div>
