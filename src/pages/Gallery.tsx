@@ -1,66 +1,59 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import img1 from '../assets/gallery/1.jpeg';
+import img23 from '../assets/gallery/3.jpeg';
+import img2 from '../assets/gallery/4.jpeg';
+import img3 from '../assets/gallery/5.jpeg';
+import img4 from '../assets/gallery/6.jpeg';
+import img5 from '../assets/gallery/7.jpeg';
+import img6 from '../assets/gallery/8.jpeg';
+import img7 from '../assets/gallery/9.jpeg';
+import img8 from '../assets/gallery/10.jpeg';
+import img9 from '../assets/gallery/11.jpeg';
+import img10 from '../assets/gallery/12.jpeg';
+import img11 from '../assets/gallery/13.jpeg';
+import img12 from '../assets/gallery/14.jpeg';
+import img13 from '../assets/gallery/15.jpeg';
+import img14 from '../assets/gallery/16.jpeg';
+import img15 from '../assets/gallery/17.jpeg';
+import img16 from '../assets/gallery/18.jpeg';
+import img17 from '../assets/gallery/19.jpeg';
+import img18 from '../assets/gallery/20.jpeg';
+import img19 from '../assets/gallery/21.jpeg';
+import img20 from '../assets/gallery/22.jpeg';
+import img21 from '../assets/gallery/23.jpeg';
+import img22 from '../assets/gallery/24.jpeg';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const categories = [
-    { id: 'all', name: 'All Activities' },
-    { id: 'art', name: 'Art & Craft' },
-    { id: 'play', name: 'Playtime' },
-    { id: 'learning', name: 'Learning' },
-    { id: 'events', name: 'Special Events' }
+  // Use imported images instead of placeholder URLs
+  const galleryImages = [
+    { src: img1, title: '' },
+    { src: img23, title: '' },
+    { src: img2, title: '' },
+    { src: img3, title: '' },
+    { src: img4, title: '' },
+    { src: img5, title: '' },
+    { src: img6, title: '' },
+    { src: img7, title: '' },
+    { src: img8, title: '' },
+    { src: img9, title: '' },
+    { src: img10, title: '' },
+    { src: img11, title: '' },
+    { src: img12, title: '' },
+    { src: img13, title: '' },
+    { src: img14, title: '' },
+    { src: img15, title: '' },
+    { src: img16, title: '' },
+    { src: img17, title: '' },
+    { src: img18, title: '' },
+    { src: img19, title: '' },
+    { src: img20, title: '' },
+    { src: img21, title: '' },
+    { src: img22, title: '' }
   ];
-
-  const images = [
-    {
-      src: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&auto=format&fit=crop&q=80',
-      category: 'art',
-      title: 'Creative Art Session'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&auto=format&fit=crop&q=80',
-      category: 'play',
-      title: 'Outdoor Play'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&auto=format&fit=crop&q=80',
-      category: 'learning',
-      title: 'Reading Time'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1445633629932-0029acc44e88?w=800&auto=format&fit=crop&q=80',
-      category: 'events',
-      title: 'Annual Day Celebration'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?w=800&auto=format&fit=crop&q=80',
-      category: 'art',
-      title: 'Painting Workshop'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&auto=format&fit=crop&q=80',
-      category: 'learning',
-      title: 'Science Experiments'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1445633629932-0029acc44e88?w=800&auto=format&fit=crop&q=80',
-      category: 'events',
-      title: 'Parents Day'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?w=800&auto=format&fit=crop&q=80',
-      category: 'play',
-      title: 'Music and Movement'
-    }
-  ];
-
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const filteredImages = activeCategory === 'all'
-    ? images
-    : images.filter(img => img.category === activeCategory);
 
   return (
     <div className="pt-20">
@@ -91,40 +84,21 @@ const Gallery = () => {
         </div>
       </motion.div>
 
-      {/* Category Filter */}
+      {/* Image Grid */}
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          {categories.map((category) => (
-            <motion.button
-              key={category.id}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-2 rounded-full text-lg font-medium transition-colors duration-300
-                ${activeCategory === category.id
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-            >
-              {category.name}
-            </motion.button>
-          ))}
-        </div>
-
-        {/* Image Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
           <AnimatePresence>
-            {filteredImages.map((image, index) => (
+            {galleryImages.map((image, index) => (
               <motion.div
-                key={image.src}
+                key={index}
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
                 whileHover={{ scale: 1.03 }}
                 className="relative aspect-square cursor-pointer overflow-hidden rounded-xl shadow-lg"
                 onClick={() => setSelectedImage(image.src)}
@@ -160,7 +134,10 @@ const Gallery = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               className="absolute top-4 right-4 text-white hover:text-gray-300"
-              onClick={() => setSelectedImage(null)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedImage(null);
+              }}
             >
               <X className="h-8 w-8" />
             </motion.button>
@@ -171,6 +148,7 @@ const Gallery = () => {
               src={selectedImage}
               alt="Selected image"
               className="max-w-full max-h-[90vh] object-contain"
+              onClick={(e) => e.stopPropagation()}
             />
           </motion.div>
         )}
