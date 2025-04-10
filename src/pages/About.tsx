@@ -4,30 +4,30 @@ import { Users, BookOpen, Heart, Award } from 'lucide-react';
 
 const About = () => {
   const team = [
-    {
-      name: 'Sarah Johnson',
-      role: 'Director',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=400&auto=format&fit=crop',
-      description: 'With over 15 years of experience in early childhood education, Sarah leads our team with passion and dedication.'
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Lead Teacher',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop',
-      description: 'Specializing in early childhood development, Michael brings creativity and innovation to our learning programs.'
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Art Director',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&h=400&auto=format&fit=crop',
-      description: 'Emily\'s artistic background helps children explore their creativity through various mediums and techniques.'
-    },
-    {
-      name: 'David Thompson',
-      role: 'Music Teacher',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop',
-      description: 'David brings music to life for our students, fostering a love for rhythm and melody from an early age.'
-    }
+    // {
+    //   name: 'Sarah Johnson',
+    //   role: 'Director',
+    //   image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=400&auto=format&fit=crop',
+    //   description: 'With over 15 years of experience in early childhood education, Sarah leads our team with passion and dedication.'
+    // },
+    // {
+    //   name: 'Michael Chen',
+    //   role: 'Lead Teacher',
+    //   image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop',
+    //   description: 'Specializing in early childhood development, Michael brings creativity and innovation to our learning programs.'
+    // },
+    // {
+    //   name: 'Emily Rodriguez',
+    //   role: 'Art Director',
+    //   image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&h=400&auto=format&fit=crop',
+    //   description: 'Emily\'s artistic background helps children explore their creativity through various mediums and techniques.'
+    // },
+    // {
+    //   name: 'David Thompson',
+    //   role: 'Music Teacher',
+    //   image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop',
+    //   description: 'David brings music to life for our students, fostering a love for rhythm and melody from an early age.'
+    // }
   ];
 
   const values = [
@@ -71,7 +71,9 @@ const About = () => {
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Our Story</h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-              Building bright futures through play-based learning and dedicated care since 2012
+              The little <b>Little stars Play School</b> a new star in horizon for the kids education and Skill development has <b>successfully completed 18 years</b> and stepping into <b>19th year</b> on the coming Vijayadasami 
+              The school have provides montessori Teacher's training. The school admits limited children. The Teaching is based on Montessori play way method through audio, video and audio visual aids aming at all round development of knowledge. A lot of Programmme are conducted for the tiny tots through out the years
+              . The children with their parents go for Picnic to near by place of interest like children's park and Zoo. Safe Environment,Flexible Hours Certified Teachers
             </p>
           </motion.div>
         </div>
@@ -157,12 +159,12 @@ const About = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
-          <p className="text-xl text-gray-600">Dedicated professionals committed to your child's growth</p>
+          {/* <h2 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
+          <p className="text-xl text-gray-600">Dedicated professionals committed to your child's growth</p> */}
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {team.map((member, index) => (
+          {/* {team.map((member, index) => (
             <motion.div
               key={index}
               initial={{ y: 20, opacity: 0 }}
@@ -185,7 +187,7 @@ const About = () => {
                 <p className="text-gray-600">{member.description}</p>
               </div>
             </motion.div>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

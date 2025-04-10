@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Clock, Users, Star, ChevronDown, CheckCircle2 } from 'lucide-react';
+import nursery from "../assets/nursery.jpeg";
+import lkg from "../assets/gallery/4.jpeg";
+import prekg from "../assets/prekg.jpeg";
+import halfdaycare from '../assets/gallery/22.jpeg';
+import fullddaycare from '../assets/gallery/14.jpeg';
+
 
 const Classes = () => {
   const [selectedClass, setSelectedClass] = useState<string | null>(null);
@@ -8,48 +14,76 @@ const Classes = () => {
   const programs = [
     {
       id: 'toddlers',
-      name: 'Toddler Program',
+      name: 'Nursery',
       ageRange: '2-3 years',
       schedule: 'Monday to Friday, 9 AM - 12 PM',
-      capacity: '8 children per class',
-      description: 'Our toddler program focuses on early socialization, motor skills development, and basic cognitive learning through play.',
+      capacity: '',
+      description: 'Gentle introduction to structured learning.',
       activities: [
-        'Sensory Play',
+        'Small group activities for social development',
         'Basic Language Development',
-        'Music and Movement',
+        'Sensory play and motor skills developmen',
         'Fine Motor Activities'
       ],
-      image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&auto=format&fit=crop&q=80'
+      image: nursery,
     },
     {
       id: 'preschool',
-      name: 'Preschool Program',
+      name: 'Pre Kg',
       ageRange: '3-4 years',
-      schedule: 'Monday to Friday, 9 AM - 2 PM',
-      capacity: '12 children per class',
-      description: 'A comprehensive program that builds foundational skills through structured activities and guided play.',
+      schedule: 'Monday to Friday, 9 AM - 12 PM',
+      capacity: '',
+      description: 'Foundational skills through play based learning and creative activities. ',
       activities: [
-        'Pre-Reading Skills',
-        'Number Concepts',
-        'Art and Creativity',
+        'Introduction to letters and numbers',
+        'Creative art and craft',
+        'Interactive group learning',
         'Social Skills Development'
       ],
-      image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&auto=format&fit=crop&q=80'
+      image: prekg,
     },
     {
       id: 'prek',
-      name: 'Pre-K Program',
-      ageRange: '4-5 years',
-      schedule: 'Monday to Friday, 9 AM - 3 PM',
-      capacity: '15 children per class',
-      description: 'Preparing children for kindergarten through advanced learning activities and social development.',
+      name: 'LKG',
+      ageRange: '3-4 years',
+      schedule: 'Monday to Friday, 9 AM - 12 PM',
+      capacity: '',
+      description: 'Pre reading and writing skills basic mathematical concepts envirornmental awarness problem solving skills',
       activities: [
         'Reading Readiness',
         'Math Foundations',
         'Science Exploration',
         'Writing Skills'
       ],
-      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&auto=format&fit=crop&q=80'
+      image: lkg
+    },
+    {
+      id: 'prek',
+      name: 'Half Day Care',
+      ageRange: '3-4 years',
+      schedule: 'Monday to Friday, 9 AM - 12 PM',
+      capacity: '',
+      description: 'Flexible care program with educational activity and supervised play',
+      activities: [
+        'OutDoor Play',
+        'Indoor Play',
+        'Group Play',
+      ],
+      image: halfdaycare,
+    },
+    {
+      id: 'prek',
+      name: 'Full Day care',
+      ageRange: '3-4 years',
+      schedule: 'Monday to Friday, 9 AM - 12 PM',
+      capacity: '',
+      description: 'Extended hours of care rest period and quiet time varied acitvity schedule',
+      activities: [
+        'Full time care',
+        'Group Play',
+        'Out door sport',
+      ],
+      image: fullddaycare
     }
   ];
 

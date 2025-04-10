@@ -72,27 +72,33 @@ const Home = () => {
   const programs = [
     {
       icon: <BookOpen className="h-6 w-6" />,
-      title: 'Early Learning',
+      title: 'Nursery ',
       age: '2-3 years',
-      description: 'Foundation skills through play-based learning'
+      description: 'Gentle introduction to structured learning and small group activities for social development'
     },
     {
       icon: <Palette className="h-6 w-6" />,
-      title: 'Creative Arts',
+      title: 'Pre Kg',
       age: '3-4 years',
-      description: 'Expressing creativity through various mediums'
+      description: 'Foundational skills through play based learning and creative activities, Introduction to letters and numbers'
     },
     {
       icon: <Music className="h-6 w-6" />,
-      title: 'Music & Movement',
+      title: 'LKG',
       age: '4-5 years',
-      description: 'Rhythm, dance, and musical exploration'
+      description: 'Pre reading and writing skills basic mathematical concepts envirornmental awarness problem solving skills'
     },
     {
       icon: <Gamepad className="h-6 w-6" />,
-      title: 'Pre-K Prep',
-      age: '5-6 years',
-      description: 'Kindergarten readiness program'
+      title: 'Half Day Care',
+      age: 'All age group',
+      description: 'Flexible care program with educational activity and supervised play'
+    },
+    {
+      icon: <Gamepad className="h-6 w-6" />,
+      title: 'Full Day Care',
+      age: 'All age group',
+      description: 'Extended hours of care rest period and quiet time varied acitvity schedule'
     }
   ];
 
