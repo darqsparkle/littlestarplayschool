@@ -1,69 +1,100 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import React, { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState("idle");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: { target: { name: any; value: any; }; }
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setSubmitStatus('success');
-    setIsSubmitting(false);
-
-    // Reset form after success
-    setTimeout(() => {
-      setSubmitStatus('idle');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      });
-    }, 3000);
+    if (!form.current) {
+      console.error('Form reference is not available');
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+  
+    // EmailJS configuration
+    const serviceId = 'service_y1zkn81';
+    const templateId = 'template_d946chq';
+    const publicKey = 'sWmTSp1WL9EbyudFl';
+  
+    try {
+      // Send email using EmailJS
+      const result = await emailjs.sendForm(
+        serviceId,
+        templateId,
+        form.current, // Now TypeScript knows this is not undefined
+        publicKey
+      );
+      
+      console.log('Email sent successfully:', result.text);
+      setSubmitStatus("success");
+      
+      // Reset form after success
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+        setSubmitStatus("idle");
+      }, 3000);
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: <MapPin className="h-6 w-6 text-blue-500" />,
-      title: 'Visit Us',
-      details: ['Jain Staff Colony Rd, MMTC Colony, Nanganallur, Chennai, Tamil Nadu 600061']
+      title: "Visit Us",
+      details: [
+        "Jain Staff Colony Rd, MMTC Colony, Nanganallur, Chennai, Tamil Nadu 600061",
+      ],
     },
     {
       icon: <Phone className="h-6 w-6 text-green-500" />,
-      title: 'Call Us',
-      details: ['+91-94447 99338']
+      title: "Call Us",
+      details: [{ text: "+91-94447 99338", link: "tel:+919444799338" }],
     },
     {
       icon: <Mail className="h-6 w-6 text-red-500" />,
-      title: 'Email Us',
-      details: [ 'admissions@littlestar.com']
+      title: "Email Us",
+      details: ["rajinisrini56@gmail.com"],
     },
     {
       icon: <Clock className="h-6 w-6 text-purple-500" />,
-      title: 'Hours',
-      details: ['Monday - Friday: 8 AM - 6 PM', 'Weekend: Closed']
-    }
+      title: "Hours",
+      details: ["Monday - Friday: 8 AM - 6 PM", "Weekend: Closed"],
+    },
   ];
 
   return (
@@ -115,9 +146,19 @@ const Contact = () => {
               >
                 {info.icon}
               </motion.div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">{info.title}</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                {info.title}
+              </h3>
               {info.details.map((detail, idx) => (
-                <p key={idx} className="text-gray-600">{detail}</p>
+                <p key={idx} className="text-gray-600">
+                  {typeof detail === "string" ? (
+                    detail
+                  ) : (
+                    <a href={detail.link} className="text-blue-500 underline">
+                      {detail.text}
+                    </a>
+                  )}
+                </p>
               ))}
             </motion.div>
           ))}
@@ -154,10 +195,15 @@ const Contact = () => {
               viewport={{ once: true }}
               className="bg-white p-8 rounded-xl shadow-lg"
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Send us a Message
+              </h2>
+              <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Full Name
                   </label>
                   <input
@@ -172,7 +218,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Email Address
                   </label>
                   <input
@@ -187,7 +236,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Phone Number
                   </label>
                   <input
@@ -201,7 +253,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Subject
                   </label>
                   <select
@@ -221,7 +276,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Message
                   </label>
                   <textarea
@@ -235,21 +293,30 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
+                {/* Hidden input for CC email */}
+                <input 
+                  type="hidden" 
+                  name="cc_to" 
+                  value="rajinisrini56@gmail.com" 
+                />
+
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={`w-full py-3 px-6 rounded-lg text-white font-semibold flex items-center justify-center space-x-2
-                    ${isSubmitting ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'}`}
+                    ${
+                      isSubmitting
+                        ? "bg-gray-400"
+                        : "bg-blue-600 hover:bg-blue-700"
+                    }`}
                 >
                   <Send className="h-5 w-5" />
-                  <span>
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </span>
+                  <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
                 </motion.button>
 
-                {submitStatus === 'success' && (
+                {submitStatus === "success" && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -259,7 +326,7 @@ const Contact = () => {
                   </motion.div>
                 )}
 
-                {submitStatus === 'error' && (
+                {submitStatus === "error" && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -282,28 +349,32 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <p className="text-xl text-gray-600">Find quick answers to common questions</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-xl text-gray-600">
+            Find quick answers to common questions
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {[
             {
               q: "What are your operating hours?",
-              a: "We are open Monday through Friday from 7 AM to 6 PM. We are closed on weekends and major holidays."
+              a: "We are open Monday through Friday from 7 AM to 6 PM. We are closed on weekends and major holidays.",
             },
             {
               q: "How do I enroll my child?",
-              a: "Start by scheduling a tour of our facility. After the tour, we'll provide you with enrollment forms and guide you through the registration process."
+              a: "Start by scheduling a tour of our facility. After the tour, we'll provide you with enrollment forms and guide you through the registration process.",
             },
             {
               q: "What is your teacher-to-student ratio?",
-              a: "Our teacher-to-student ratios vary by age group, but we maintain low ratios to ensure individual attention for each child."
+              a: "Our teacher-to-student ratios vary by age group, but we maintain low ratios to ensure individual attention for each child.",
             },
             {
               q: "Do you provide meals?",
-              a: "We provide healthy snacks throughout the day. Parents are required to pack a lunch for their children."
-            }
+              a: "We provide healthy snacks throughout the day. Parents are required to pack a lunch for their children.",
+            },
           ].map((faq, index) => (
             <motion.div
               key={index}
@@ -313,7 +384,9 @@ const Contact = () => {
               transition={{ delay: index * 0.2 }}
               className="bg-white p-6 rounded-xl shadow-md"
             >
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{faq.q}</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {faq.q}
+              </h3>
               <p className="text-gray-600">{faq.a}</p>
             </motion.div>
           ))}
